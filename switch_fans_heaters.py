@@ -43,7 +43,7 @@ GPIO.setup(heatpad3, GPIO.OUT)
 # function to read the temperature sensor and switch to COOLING/HEATING
 def check_temp(temp):
 
-	if temp > 24:
+	if temp >= 24:
 		COOLING = True
 		HEATING = False
 		#GPIO.output(led_pin, io.HIGH)
@@ -122,8 +122,9 @@ def main():
 	t = Adafruit_DHT.read_retry(temp_sensor, temp_pin)
 	print "Temperature right now is", t[1]
 	# t[0] is humidity and t[1] is temp in celcius
-	time.sleep(2) # if you do print(t) it will print a tuple 
-	                                   # of (humidity, temp)
+	# time.sleep(2) 
+	# if you do print(t) it will print a tuple of (humidity, temp)
+	
 	# check temperature for COOLING/HEATING status
 	[COOLING_REQD, HEAT_REQD] = check_temp(t[1])
 	
